@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div.pythoncourse{
+        text-decoration: none}
+    </style>
+</head>
+<body>
+
+{% for entry in entries %}
+<p><article><div class="content">
+<strong>{{entry.date_posted}}</strong>
+<br>
+{{entry.text}}</div></article></p>
+{% endfor %}
+{% if course.pk is 1 %}
+<div class="pythoncourse">
+<img src="https://images.pexels.com/photos/574070/pexels-photo-574070.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+<h1><a href="https://www.coursera.org/courses?query=python"> {{course.coursename}} </a></h1></div>
+<h2>{{course.insname}}</h2>
+<ul>
+    {% for x in AllCourses.set.all %}
+    <li>{{x.ct}}</li>
+    {% endfor %}
+</ul>
+{% elif course.pk is 2 %}
+<img src="https://images.pexels.com/photos/3194518/pexels-photo-3194518.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
+<div class="namecourse"> </div><h1><a href="https://java-course.ru/"> {{course.coursename}}</a></h1>
+{% else %}
+<h1> {{course.coursename}}</h1>
+<h2>{{course.insname}}</h2>
+</div>
+{% endif %}
+{% if error_message %}
+<p> <strong> {{error_message}} </strong></p>
+{% endif %}
+<form action="{% url 'TechnicalCourses:yourchoice' course.id %}" method="post">
+    {% csrf_token %}
+    {% for choice in course.details_set.all %}
+    <input type="radio" name="choice" id="choice" {{forloop.counter}} value="{choice.id}">
+    <label for ="choice" {{forloop.counter}}> {{ choice.ct }} </label><br> {% endfor %}
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

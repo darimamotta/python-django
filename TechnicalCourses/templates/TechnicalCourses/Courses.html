@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+    a.h3{
+    text-decoration: none;}
+    a{
+    color: black;
+	font-size: 17px;
+	font-family: Arial;
+
+    }
+.nav-link {
+
+    color: white;
+	font-size: 19px;
+	font-family: Arial;
+    text-align:center
+
+}
+.nav{
+ display: block;
+  padding: 8px;
+  background-color:black;
+  text-align:center;
+  height:35px
+  }
+  .img{
+   width: 100%;
+  height: auto;}
+
+    </style>
+</head>
+<body >
+<nav class="nav" >
+  <a class="nav-link active" style="font-color":white; aria-current="page" href="#">Active</a>
+  <a class="nav-link"  style="color":white href="http://127.0.0.1:8000/register.html/">    Register   </a>
+  <a class="nav-link"  style="color":white href="#">    Events     </a>
+  <a href = "http://127.0.0.1:8000/Name.html/"class="nav-link disabled"  style="color":white;>    Contact Us   </a>
+</nav>
+
+<h1>Welcome to Programming Camp</h1>
+<img src="https://images.pexels.com/photos/5474031/pexels-photo-5474031.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+<ol>
+    {% for x in ac %}
+    <li >
+        <h3><a href="/{{x.id}}/" > Subscribe New Intensive course  2 Weeks {{x.coursename}}
+
+
+        </a></h3>
+    </li>
+    {%endfor%}
+</ol>
+
+</body>
+</html>
