@@ -9,6 +9,9 @@ from .forms import RegisterForm
 
 from django.http import HttpResponseRedirect
 from .forms import NameForm
+from .models import Post , Tag
+from django.shortcuts import render
+
 def yourchoice(request, couse_id):
     course = get_object_or_404(Allcourses, pk = couse_id)
     try: selected_ct= course.details_set.get(pk=request.POST['choice'])
@@ -70,8 +73,15 @@ def detail(request, couse_id):
    # except Allcourses.DoesNotExist:
         #raise Http404("Course Not Available")
     #return render(request, 'TechnicalCourses/detail.html', {'course': course})
-
-
+def posts_list(request):
+    posts = Post.objects.all()
+    return render(request, 'TechnicalCourses/posts.html', context={'posts': posts})
+def post_detail(request,slug):
+    post=Post.objects.get(slug_iexact=slug)
+    return render(request, 'TechnicalCourses/post_details.html', context={'post': post})
+def tags_list(request):
+    tags=Tag.objects.all()
+    return render(request, 'TechnicalCourses/tags_list.html', context={'tags': tags})
 
 def add(request):
     form = NameForm()

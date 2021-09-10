@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<style>
+
+
+}
+.navbar-brand {
+   display: inline;
+   text-color: white;
+   }
+</style>
+<style>
+
+   .nav-link {
+  text-color: white;
+  text-decoration:none;
+  font-size:30px;
+  font:Arial;
+
+  }
+
+</style>
+
+<body>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-text" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="navbar-brand" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="navbar-brand" href="#">Link</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="navbar-brand">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+{% block title %}
+
+<h1> Post list </h1>
+
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-5">Post:</h1>
+{% for post in posts %}
+
+
+
+<div class="card text-center">
+  <div class="card-header">
+   {{post.date_pub}}
+  </div>
+  <div class="card-body txt-center">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">{{ post.body |truncatewords:15 }}</p>
+    <a href="#" class="btn btn-primary" >Read</a>
+  </div>
+</div>
+
+
+<p>
+    {{post.title}}
+</p>
+{% endfor %}
+{% endblock %}
+
+</div>
+</body>
+</html>

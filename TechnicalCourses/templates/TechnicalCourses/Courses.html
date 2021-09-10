@@ -4,28 +4,37 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style type="text/css">
-    a.h3{
-    text-decoration: none;}
-    a{
-    color: black;
+    body{
+    background-image:'https://images.pexels.com/photos/5474031/pexels-photo-5474031.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
+
+    background-color: #d8e6f2;}
+
+
+    a {
+    color: #1d2326;
 	font-size: 17px;
 	font-family: Arial;
+	text-decoration: none;
 
     }
 .nav-link {
 
     color: white;
-	font-size: 19px;
+	font-size: 30px;
 	font-family: Arial;
-    text-align:center
+    text-align:center;
+      margin-top: 20px;
+  padding: 10px;
 
 }
 .nav{
  display: block;
-  padding: 8px;
+ margin:top;
+  padding: 25px;
   background-color:black;
-  text-align:center;
-  height:35px
+  text-align: center;
+  height:55px;
+
   }
   .img{
    width: 100%;
@@ -34,11 +43,12 @@
     </style>
 </head>
 <body >
+
 <nav class="nav" >
-  <a class="nav-link active" style="font-color":white; aria-current="page" href="#">Active</a>
-  <a class="nav-link"  style="color":white href="http://127.0.0.1:8000/register.html/">    Register   </a>
-  <a class="nav-link"  style="color":white href="#">    Events     </a>
-  <a href = "http://127.0.0.1:8000/Name.html/"class="nav-link disabled"  style="color":white;>    Contact Us   </a>
+  <a class="nav-link active" style="font-color":#d99b84 aria-current="page" href="http://127.0.0.1:8000/posts.html/" %}">  Post          </a>
+  <a class="nav-link"  style="color":#d99b84 href="http://127.0.0.1:8000/register.html/">    Register       </a>
+  <a class="nav-link"  style="color":#d99b84 href="#">    Events        </a>
+  <a href = "http://127.0.0.1:8000/Name.html/" class="nav-link disabled"  style="color":#d99b84>    Contact Us      </a>
 </nav>
 
 <h1>Welcome to Programming Camp</h1>
@@ -46,10 +56,10 @@
 <ol>
     {% for x in ac %}
     <li >
-        <h3><a href="/{{x.id}}/" > Subscribe New Intensive course  2 Weeks {{x.coursename}}
+        <div><h3  class="mypro"><a class="mynum" href="/{{x.id}}/" > Subscribe New Intensive course  2 Weeks {{x.coursename}}
 
 
-        </a></h3>
+        </a></h3></div>
     </li>
     {%endfor%}
 </ol>

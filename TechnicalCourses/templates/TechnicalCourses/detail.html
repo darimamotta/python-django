@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        div.pythoncourse{
-        text-decoration: none}
+        a,input {
+       color: #1d2326;
+	   font-size: 17px;
+	   font-family: Arial;
+	    text-decoration: none;
+        text-decoration: none
+        }
+        img {
+        }
     </style>
 </head>
 <body>
@@ -42,7 +49,7 @@
     {% for choice in course.details_set.all %}
     <input type="radio" name="choice" id="choice" {{forloop.counter}} value="{choice.id}">
     <label for ="choice" {{forloop.counter}}> {{ choice.ct }} </label><br> {% endfor %}
-    <input type="submit" value="Submit">
+    <br><input type="submit" value="Submit">
 </form>
 
 </body>

@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    label {
+       color: #1d2326;
+	   font-size: 20px;
+	   font-family: Arial;
+	   text-style:bold;
+
+        }
+    }
+</style>
 <body>
-<form action="/your-name/" method="post">
+<label><form action="/Enter your-name/" method="post">
     {% csrf_token %}
     {{ form }}
+
     <input type="submit" value="Submit">
-</form>
+</form></label>
 </body>
 </html>
