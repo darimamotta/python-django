@@ -3,66 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <style type="text/css">
-    body{
-    background-image:'https://images.pexels.com/photos/5474031/pexels-photo-5474031.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
 
-    background-color: #d8e6f2;}
+   h3,h1, h2, h6 { text-align: center; }
 
-
-    a {
-    color: #1d2326;
-	font-size: 17px;
-	font-family: Arial;
-	text-decoration: none;
-
-    }
-.nav-link {
-
-    color: white;
-	font-size: 30px;
-	font-family: Arial;
-    text-align:center;
-      margin-top: 20px;
-  padding: 10px;
-
+   .back { background-color: #d8e6f2;}
+   .nav {background-color: black;}
+    .nav-link{
+font-size: 20px;
+font-family: Arial;
+color: grey !important;
 }
-.nav{
- display: block;
- margin:top;
-  padding: 25px;
-  background-color:black;
-  text-align: center;
-  height:55px;
 
-  }
   .img{
-   width: 100%;
-  height: auto;}
+  left: 0;
+  width: 60%;
+  height: auto;
+  background-position: left bottom;
+}
+ol {
+   padding-left: 35px;}
 
+   .mypro {
+   padding-left: 2px;
+   }
+p {padding-left: 20px;}
+.num { padding-left:10px;}
+
+ a {    color: black;
+	text-decoration: none;
+    }
     </style>
 </head>
 <body >
+<nav class="nav">
+      <a class="nav-link"  href="http://127.0.0.1:8000/register.html/">Register</a>
+      <a class="nav-link" href="http://127.0.0.1:8000/posts.html/">Post</a>
+      <a class="nav-link" href="http://127.0.0.1:8000/tag.html/">Tags <a/>
+      <a class="nav-link" href="http://127.0.0.1:8000/Name.html/">Contact</a>
 
-<nav class="nav" >
-  <a class="nav-link active" style="font-color":#d99b84 aria-current="page" href="http://127.0.0.1:8000/posts.html/" %}">  Post          </a>
-  <a class="nav-link"  style="color":#d99b84 href="http://127.0.0.1:8000/register.html/">    Register       </a>
-  <a class="nav-link"  style="color":#d99b84 href="#">    Events        </a>
-  <a href = "http://127.0.0.1:8000/Name.html/" class="nav-link disabled"  style="color":#d99b84>    Contact Us      </a>
 </nav>
+<div class="back">
 
-<h1>Welcome to Programming Camp</h1>
-<img src="https://images.pexels.com/photos/5474031/pexels-photo-5474031.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+{% block content %}
+
+{% endblock %}
+<h1> Online Coding Camps &
+Summer Programming Courses </h1>
+    <h6> 2021 programs for kids & teens </h6>
+
+<p>Coding camps for kids offer instruction in Python, Scratch, JavaScript, C++, and more. Courses are structured, and typically run a week in length, with sessions available in multiple time zones (5 consecutive days, Monday-Friday). With low student to instructor ratios, classes blend personalized learning and time for kids to socialize with new friends.</p>
+    <br><br><h2>       On-campus programs </h2>
+<p>Registration for 2022 on-campus programs opens this fall. In the meantime, we invite you to join us for our new JavaScript Coding with MIT Open Learning | Teen Tech—a 10-week online course for teens. You can also check out our online after-school programs or online coding tutoring, running right now!
+</p>
+
 <ol>
     {% for x in ac %}
     <li >
-        <div><h3  class="mypro"><a class="mynum" href="/{{x.id}}/" > Subscribe New Intensive course  2 Weeks {{x.coursename}}
+        <div><p  class="mypro"><a class="mynum" href="/{{x.id}}/" > Scratch Coding Course {{x.coursename}}
 
-
-        </a></h3></div>
+        </a></p></div>
     </li>
     {%endfor%}
 </ol>
+<img src="https://images.pexels.com/photos/5474031/pexels-photo-5474031.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+</div>
 
 </body>
 </html>

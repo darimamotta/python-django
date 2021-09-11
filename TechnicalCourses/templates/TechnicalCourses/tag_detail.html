@@ -3,20 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
-<style>
-   .nav-item a {
-font-size: 17px;
-font-family: Arial;
-color: grey !important;
-}
-</style>
 <body>
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-text" href="http://127.0.0.1:8000/">Home</a>
-
+    <a class="navbar-text" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -37,27 +31,21 @@ color: grey !important;
     </div>
   </div>
 </nav>
-
-
 {% block title %}
+{{ tag.title }}
 
-<h2> Recent Posts </h2>
+<h1> Post list </h1>
 
 {% endblock %}
 
 {% block content %}
+<h1 class="mb-5">Post with"{{ tag.title |title }}" tag:</h1>
+{% for post in tag.posts.all %}
+{% include 'TechnicalCourses/includes/post_card_template.html' %}
 
-{% for post in posts %}
-
-{% include 'TechnicalCourses/includes/post_card_template.html'  %}
-
-
-<p>
-    {{post.title}}
-</p>
 {% endfor %}
 {% endblock %}
 
-</div>
+
 </body>
 </html>

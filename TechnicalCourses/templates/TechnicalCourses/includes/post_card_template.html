@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+          h3,h1, h2, p, div { text-align: center; }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha38
+</head>
+
+<body>
+
+
+    <div class="card text-center">
+  <div class="card-header">
+    {{post.date_pub}}
+  </div>
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">{{ post.body|truncatewords:15 }}</p>
+    <a href="#" class="btn btn-primary">Read</a>
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
+
+</body>
+</html>

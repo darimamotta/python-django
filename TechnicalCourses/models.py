@@ -3,13 +3,6 @@ import datetime
 from django.utils import timezone
 from django.shortcuts import reverse
 
-class Tag(models.Model):
-    title = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=50, unique=True)
-
-def __str__(self):
-        return '{}'.format(self.title)
-
 class Post(models.Model):
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True)
@@ -18,8 +11,18 @@ class Post(models.Model):
     date_pub = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
-        return reverse('post_detail_url',kwargs={'slug':self.slug})
+        return reverse('post_detail_url', kwargs={'slug': self.slug})
+
     def __str__(self):
+        return '{}'.format(self.title)
+
+class Tag(models.Model):
+    title = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50, unique=True)
+    def get_absolute_url(self):
+        return reverse('tag_detail_url', kwargs={'slug': self.slug})
+
+def __str__(self):
         return '{}'.format(self.title)
 
 class Entry(models.Model):
@@ -34,7 +37,7 @@ class Entry(models.Model):
 # Create your models here.
 class Allcourses(models.Model):
     coursename=models.CharField(max_length=200)
-    insname=models.CharField(max_length=100)
+    insname = models.CharField(max_length=100)
     startedfrom = models.DateTimeField('Started from')
     def __str__(self):
      return self.coursename
