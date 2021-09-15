@@ -1,22 +1,18 @@
-from django.shortcuts import render, get_object_or_404
+from django.contrib import auth
+from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template import loader
-from .models import Allcourses, details
-from django import forms
-from .models import Entry
-from .forms import RegisterForm
-
-
+from .models import Allcourses
 from django.http import HttpResponseRedirect
-from .forms import NameForm
+from .forms import LoginForm, UserForm
 from .models import Post, Tag
-from .forms import UserRegistrationForm, RegisterForm, ContactForm
+from .forms import Register, Contact
 
 from django.shortcuts import render
 
 def contact_form(request):
     if request.method == 'GET':
-        form =ContactForm(request.GET)
+        form =Contact(request.GET)
         if form.is_valid():
             if form.is_valid():
                 # process the data in form.cleaned_data as required
@@ -26,7 +22,7 @@ def contact_form(request):
 
             # if a GET (or any other method) we'll create a blank form
         else:
-            form = ContactForm()
+            form = Contact()
 
         return render(request, 'TechnicalCourses/Name.html', {'form': form})
 
@@ -41,10 +37,11 @@ def yourchoice(request, couse_id):
     selected_ct.save()
     return render(request, 'TechnicalCourses/detail.html', {'course': course})
 
-def register_acc(request):
-    if request.method == 'GET':
+
+def login_acc(request):
+    if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = RegisterForm(request.GET)
+        form = Register(request.POST)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
@@ -54,15 +51,31 @@ def register_acc(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = RegisterForm()
+        form = Register()
 
     return render(request, 'TechnicalCourses/register.html', {'form': form})
+
+
+class UserProfileForm:
+    pass
+
+
+def add_user(request):
+    if request.method == "POST":
+        uform = UserForm(data = request.POST)
+        pform = UserProfileForm(data = request.POST)
+        if uform.is_valid() and pform.is_valid():
+            user = uform.save()
+            profile = pform.save(commit = False)
+            profile.user = user
+            profile.save()
+            return HttpResponse(template.render(context, request))
 
 def get_name(request):
     # if this is a POST request we need to process the form data
     if request.method == 'NAME':
         # create a form instance and populate it with data from the request:
-        form = NameForm(request.POST)
+        form = Contact(request.POST)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
@@ -72,9 +85,9 @@ def get_name(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = NameForm()
+        form = Contact()
 
-    return render(request, 'TechnicalCourses/Name.html', {'form': form})
+    return render(request, 'TechnicalCourses/Register.html', {'form': form})
 
 # Create your views here.
 def Courses(request):
@@ -117,9 +130,25 @@ def add(request):
 
 
 
+
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+    user = auth.authenticate(username=username, password=password)
+
+    if user is not None:
+        auth.login(request, user)
+        return redirect('/')
+    else:
+        return render(request, 'TechnicalCourses/register.html', context={'username': username})
+        return redirect('TechnicalCourses/Courses.html')
+
+
 def register(request):
     if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
+        user_form = Register(request.GET)
         if user_form.is_valid():
             # Create a new user object but avoid saving it yet
             new_user = user_form.save(commit=False)
@@ -129,5 +158,5 @@ def register(request):
             new_user.save()
             return render(request, 'TechnicalCourses/register_done.html', {'new_user': new_user})
     else:
-        user_form = UserRegistrationForm()
-    return render(request, 'account/register.html', {'user_form': user_form})
+        user_form = Register(request.GET)
+    return render(request, 'TechnicalCourses/register.html', {'users': user_form})

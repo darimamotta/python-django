@@ -1,8 +1,12 @@
 from django.contrib import admin
-from .models import Entry
+from django.contrib.auth import get_user_model
 
 # Register your models here.
-from .models import Allcourses,details
+from .models import Allcourses, details, Tag, Post, Login
 admin.site.register(Allcourses)
 admin.site.register(details)
-admin.site.register(Entry)
+admin.site.register(Tag)
+admin.site.register(Post)
+admin.site.register(Login)
+
+

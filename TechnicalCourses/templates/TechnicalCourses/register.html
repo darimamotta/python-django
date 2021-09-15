@@ -83,10 +83,11 @@ hr {
     {% else %}
         <p>Please, use the following form to log-in:</p>
     {% endif %}
-    <div class="login-form">
-        <form  method="get">
-          <label>Your Name<input type="text" name="username" value="{{ your_name }}">  </label><br>
-           <label>Your Password<input type="password" name="password" value="{{ password }}">  </label>
+    <div class="login-form" method="POST">
+        <form   method="get">
+          <label>Your Name<input type="text" name="username" value="{{ username }}">  </label><br>
+           <label>Your Password<input type="password" name="password" value="{{ password }}">  </label><br>
+               <label>Password confirmation<input type="password" name="password" value="{{ password2 }}"> </label>
 
             <p><input type="submit" value="Log-in"></p>
         </form>
